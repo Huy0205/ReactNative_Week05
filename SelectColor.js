@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React,{ useState } from "react";
 import { StyleSheet, View, Image, Text, Pressable } from "react-native";
 
-export default function () {
+export default function ({navigation}) {
   var [img, setImg] = useState(require("./assets/vs_black.png"));
 
   return (
@@ -46,7 +46,7 @@ export default function () {
           ></Pressable>
         </View>
         <View style={styles.wrapperBtnXong}>
-          <Pressable style={styles.btnXong}>
+          <Pressable style={styles.btnXong} onPress={()=>navigation.navigate('Screen1', img)}>
             <Text style={styles.font20WhiteBold}>XONG</Text>
           </Pressable>
         </View>

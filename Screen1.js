@@ -1,12 +1,18 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import React, {useState, useEffect } from "react";
 
-export default function App() {
+export default function App({navigation, route}) {
+  const [img, setImg] = useState(require("./assets/vs_black.png"));
+  useEffect(() => {
+    if (route.params) {
+      setImg(route.params);
+    }
+  }, [route.params]);
   return (
     <View style={styles.container}>
       <View style={styles.top}>
         <Image
-          source={require("./assets/vs_black.png")}
+          source={route.params||require("./assets/vs_black.png")}
           style={styles.imgTop} resizeMethod="contain"
         ></Image>
       </View>
@@ -56,7 +62,7 @@ export default function App() {
             style={styles.chamHoi}
           ></Image>
         </View>
-        <Pressable style={styles.btnSelectColor}>
+        <Pressable style={styles.btnSelectColor} onPress={()=>navigation.navigate('SelectColor')}>
           <Text>4 MÀU-CHỌN MÀU</Text>
         </Pressable>
         <View style={styles.wrapperBtnBuy}>
